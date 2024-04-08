@@ -2,8 +2,8 @@
 """
 Testing Utils
 """
-import unittest
 from parameterized import parameterized
+import unittest
 from utils import access_nested_map
 
 
@@ -26,7 +26,7 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         Test case to verify that KeyError is raised with the expected message.
         """
-        with self.assertRaises(KeyError) as err:
+        with self.assertRaises(KeyError) as e:
             access_nested_map(nested_map, path)
 
-        self.assertEqual(str(e.exception), message)
+        self.assertEqual(f"KeyError('{message}')", repr(e.exception))
