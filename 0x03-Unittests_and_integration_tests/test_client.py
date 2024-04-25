@@ -60,5 +60,27 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(client_has_licence, expected)
 
 
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """Testing Integration
+    """
+    @classmethod
+    def setUpClass(cls):
+        cls.get_patcher = patch('requests.get', side_effect=[
+            cls.org_payload, cls.repos_payload
+        ])
+        cls.mocked_get = cls.get_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.get_patcher.stop()
+
+    def test_public_repos(self):
+        """public repos """
+
+    def test_public_repos_with_license(self):
+        """
+        Testing repos with license"""
+
+
 if __name__ == '__main__':
     unittest.main()
