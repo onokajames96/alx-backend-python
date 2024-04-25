@@ -30,7 +30,7 @@ class TestGithubOrgClient(unittest.TestCase):
                 PropertyMock(return_value=result)):
             response = GithubOrgClient(name)._public_repos_url
             self.assertEqual(response, result.get('repos_url'))
-    
+
     @patch('client.get_json')
     def test_public_repos(self, mocked_method):
         """Testing publi repos """
