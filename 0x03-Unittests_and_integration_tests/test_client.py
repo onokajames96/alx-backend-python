@@ -27,11 +27,10 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_public_repos_url(self):
         with patch.object(
-                GithubOrgClient, 'org',
-                new_callable=PropertyMock
-            )
-        as mock_org:
-
+                PropertyMock(return_value=result)):
+            response = GithubOrgClient(name)._public_repos_url
+            self.assertEqual(response, result.get('repos_url'))
+    
     @patch('client.get_json')
     def test_public_repos(self, mocked_method):
         """Testing publi repos """
